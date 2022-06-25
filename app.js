@@ -44,6 +44,7 @@ arrayProductos.push(producto5);
 let total = 0;
 
 const agregarProductosAlCarrito = () => {
+    total = 0;
     let otroProducto = false; 
     let producto = "";
     let cantidad = 0;
@@ -51,9 +52,11 @@ const agregarProductosAlCarrito = () => {
 
     do {
         producto = prompt("Cual de los siguientes productos queres comprar: \n-Body Splash \n-Esmalte de uñas \n-Shampoo \n-Mascaras en capsulas \n-Crema facial");
+        let productoMin = producto.toLowerCase();
+
         cantidad = Number(prompt("¿Cuantos productos queres comprar?"));
-        switch(producto) {
-            case arrayProductos[0].nombre:
+        switch(productoMin) {
+            case arrayProductos[0].nombre.toLowerCase():
                 arrayProductos[0].actualizarStock(cantidad);
                 if (arrayProductos[0].stock <= 0 || Number.isNaN(cantidad)) {
                     alert("Lo sentimos, en este momento no tenemos con stock");
@@ -63,7 +66,7 @@ const agregarProductosAlCarrito = () => {
                     precio = arrayProductos[0].precio
                 } 
                 break;
-            case arrayProductos[1].nombre:
+            case arrayProductos[1].nombre.toLowerCase():
                 arrayProductos[1].actualizarStock(cantidad);
                 if (arrayProductos[1].stock <= 0 || Number.isNaN(cantidad)) {
                     alert("Lo sentimos, en este momento no tenemos con stock");
@@ -73,7 +76,7 @@ const agregarProductosAlCarrito = () => {
                     precio = arrayProductos[1].precio
                 } 
                 break;
-            case arrayProductos[2].nombre:
+            case arrayProductos[2].nombre.toLowerCase():
                     arrayProductos[2].actualizarStock(cantidad);
                     if (arrayProductos[2].stock <= 0 || Number.isNaN(cantidad)) {
                         alert("Lo sentimos, en este momento no tenemos con stock");
@@ -83,7 +86,7 @@ const agregarProductosAlCarrito = () => {
                         precio = arrayProductos[2].precio
                     } 
                     break;
-            case arrayProductos[3].nombre:
+            case arrayProductos[3].nombre.toLowerCase():
                     arrayProductos[3].actualizarStock(cantidad);
                     if (arrayProductos[3].stock <= 0 || Number.isNaN(cantidad)) {
                         alert("Lo sentimos, en este momento no tenemos con stock");
@@ -93,7 +96,7 @@ const agregarProductosAlCarrito = () => {
                         precio = arrayProductos[3].precio
                     } 
                     break;
-            case arrayProductos[4].nombre:
+            case arrayProductos[4].nombre.toLowerCase():
                 arrayProductos[4].actualizarStock(cantidad);
                 if (arrayProductos[4].stock <= 0 || Number.isNaN(cantidad)) {
                     alert("Lo sentimos, en este momento no tenemos con stock");
@@ -125,8 +128,17 @@ const agregarProductosAlCarrito = () => {
 };
 
 const obtenerTotal = (total) => {
-    let totalCompra = obtenerDescuento(total);
-    return totalCompra;
+    // if (total == 0) {
+    //     let totalCompra = obtenerDescuento(total);
+    //     return totalCompra;
+    // } else {
+        total = 0;
+        let totalCompra = obtenerDescuento(total);
+        return totalCompra;
+
+    // }
+    // let totalCompra = obtenerDescuento(total);
+    // return totalCompra;
 }
 
 // agregarProductosAlCarrito();
@@ -140,6 +152,7 @@ let boton = document.getElementById("comprar");
 boton.addEventListener("click", iniciarCompra);
 
 function iniciarCompra() {
+
     agregarProductosAlCarrito();
 }
 
